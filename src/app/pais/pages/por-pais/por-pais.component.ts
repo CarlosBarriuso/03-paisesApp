@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Country } from '../../interfaces/pais-interface';
 import { PaisService } from '../../services/pais.service';
 
 @Component({
@@ -10,6 +11,7 @@ export class PorPaisComponent {
 
   termino: string = 'Holamundo';
   hayError: boolean = false;
+  paises: Country[] = [];
 
   // Inyectamos el servicio para poder usar el servicio
   constructor( private paisService: PaisService) { }
@@ -22,10 +24,11 @@ export class PorPaisComponent {
     this.paisService.buscarPais( this.termino )
     //como 2º valor subcribe puede recibir el error y lo vamos a rescatar
     .subscribe( respuesta => {
-      
+      this.paises = respuesta;
       console.log(respuesta);
     }, (err) => {
       this.hayError = true;
+      this.paises = [];
     });
 
   }  
