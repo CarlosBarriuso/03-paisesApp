@@ -9,15 +9,29 @@
   <div class="col-3">
     <h2>Busquedas</h2>
     <hr>
-    <ul class="list-goup">
-      <li class="list-goup-item">Buscar país</li>
-      <li class="list-goup-item">Por región</li>
-      <li class="list-goup-item">Por capital</li>
+    <ul class="list-group">
+      <!-- Para asegurarse que se active con la ruta correcta -->
+      <li 
+        routerLink="pais/#"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true}"
+        class="list-group-item">Buscar país
+      </li>
+      <li 
+        routerLink="region"
+        routerLinkActive="active"
+        class="list-group-item">Por región
+      </li>
+      <li 
+        routerLink="capital" 
+        routerLinkActive="active"
+        class="list-group-item">Por capital
+      </li>
     </ul>
   </div>
   <div class="col">
-    <h2>Por Capital</h2>
+    <router-outlet></router-outlet>
     <hr>
-    <app-por-capital></app-por-capital>
+    <!-- <app-por-capital></app-por-capital> -->
   </div>
 </div>
