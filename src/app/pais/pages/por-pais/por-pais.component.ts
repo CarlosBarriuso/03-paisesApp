@@ -17,6 +17,7 @@ export class PorPaisComponent {
   buscar() {
     this.hayError = false;
     console.log(this.termino);
+    
     //para que un Observable se dispare hace falta tener un Suscribe
     this.paisService.buscarPais( this.termino )
     //como 2º valor subcribe puede recibir el error y lo vamos a rescatar
