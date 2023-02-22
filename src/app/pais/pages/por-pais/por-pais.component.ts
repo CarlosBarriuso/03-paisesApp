@@ -9,6 +9,7 @@ import { PaisService } from '../../services/pais.service';
 })
 export class PorPaisComponent {
 
+
   termino: string = 'Holamundo';
   hayError: boolean = false;
   paises: Country[] = [];
@@ -16,9 +17,11 @@ export class PorPaisComponent {
   // Inyectamos el servicio para poder usar el servicio
   constructor( private paisService: PaisService) { }
 
-  buscar() {
+  buscar(terminoABuscar: string ) {
+    
     this.hayError = false;
-    console.log(this.termino);
+    this.termino = terminoABuscar;
+    
     
     //para que un Observable se dispare hace falta tener un Suscribe
     this.paisService.buscarPais( this.termino )
@@ -32,5 +35,10 @@ export class PorPaisComponent {
     });
 
   }  
+
+  sugerencias($event: string) {
+    this.hayError = false;
+    // TODO: crear sugerencias
+    }
 
 }
