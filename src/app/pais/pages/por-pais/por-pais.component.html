@@ -5,6 +5,7 @@
     <div class="col">
         <app-pais-input
             (onEnter)="buscar( $event )"
+            placeholder="Buscar país ..."
             (onDebounce)="sugerencias( $event )">
             <!-- El evento onDebounce se va a disparar cuando presionemos una tecla
             y llamamos a sugerencias pasandole el event-->

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators'
 
@@ -12,6 +12,7 @@ export class PaisInputComponent implements OnInit {
   @Output() onEnter: EventEmitter<string> = new EventEmitter();
   @Output() onDebounce: EventEmitter<string> = new EventEmitter();
 
+  @Input() placeholder: string = '';
   debouncer: Subject<string> = new Subject();
 
   termino: string = '';
@@ -30,7 +31,7 @@ export class PaisInputComponent implements OnInit {
   }
 
   buscar(){
-    console.log('Valor de termino en buscar' + this.termino);
+    console.log('Valor de termino en buscar: ' + this.termino);
     //cuando se presiona enter se emite para que lo pueda usar 
     this.onEnter.emit ( this.termino );
   }
@@ -54,5 +55,5 @@ export class PaisInputComponent implements OnInit {
   }
 
   
-  }
+  
 }

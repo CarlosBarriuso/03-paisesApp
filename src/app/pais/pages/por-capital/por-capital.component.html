@@ -1,1 +1,31 @@
-<p>por-capital works!</p>
+<h2>Por Capital</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <!-- Para que  buscar(..) en por-capital.component lleve el parametro con 
+            el valor hay que hemos tecleado hay que pasar el evento que lo contiene-->
+        <app-pais-input
+            (onEnter)="buscar( $event )"
+            placeholder="Buscar Capital ....">
+            <!-- El evento onDebounce se va a disparar cuando presionemos una tecla
+            y llamamos a sugerencias pasandole el event-->
+        </app-pais-input>
+    </div>
+</div>
+
+<hr>
+
+<div *ngIf="hayError" 
+    class="alert alert-danger">
+    No se encontró nada con el término {{ valorBusqueda }}
+</div>
+
+<div *ngIf="!hayError" 
+    class="row">
+    <div class="col">
+        <!-- Para pasar los paises al componente pais-tabla -->
+        <app-pais-tabla [paises]="paises"></app-pais-tabla> 
+        
+    </div>
+</div>

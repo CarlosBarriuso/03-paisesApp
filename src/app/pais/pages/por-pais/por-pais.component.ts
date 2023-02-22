@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Country } from '../../interfaces/pais-interface';
 import { PaisService } from '../../services/pais.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-por-pais',
@@ -40,5 +41,6 @@ export class PorPaisComponent {
     this.hayError = false;
     // TODO: crear sugerencias
     }
-
+  
+  
 }
