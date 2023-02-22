@@ -12,6 +12,7 @@ export class PaisService {
   
   constructor( private http: HttpClient) { }
 
+  //Obserbable sirve para ver los cambios en el URL
   //Para poner el tipado correcto al Obserbable
   buscarPais( termino: string ): Observable<Country[]> { 
 
@@ -24,5 +25,11 @@ export class PaisService {
 
     const url = ` ${ this.apiUrl }/capital/${ termino }`;
     return this.http.get<Country[]>( url );
+  }
+
+  obtenerPaisPorCodigo ( id: string ): Observable<Country> {
+
+    const url = ` ${ this.apiUrl }/alpha/${ id }`;
+    return this.http.get<Country>( url );
   }
 }
