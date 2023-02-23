@@ -31,7 +31,7 @@ export class PaisInputComponent implements OnInit {
   }
 
   buscar(){
-    console.log('Valor de termino en buscar: ' + this.termino);
+    //console.log('Valor de termino en buscar: ' + this.termino);
     //cuando se presiona enter se emite para que lo pueda usar 
     this.onEnter.emit ( this.termino );
   }
@@ -51,7 +51,7 @@ export class PaisInputComponent implements OnInit {
     //llamamos al debouncer para emitir el valor, con next mandamos
     // el siguiente valor, en este caso es termino. Porque debouncer esta suscritro
     // y recibe el valor
-    this.debouncer.next( this.termino);
+    this.debouncer.next( this.termino );
   }
 
   

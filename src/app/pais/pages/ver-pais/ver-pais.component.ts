@@ -1,13 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PaisService } from '../../services/pais.service';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
+import { Country } from '../../interfaces/pais-interface';
+
+//tap es un operador que dispara un efecto secundario
+
 @Component({
   selector: 'app-ver-pais',
   templateUrl: './ver-pais.component.html',
  
 })
 export class VerPaisComponent implements OnInit {
+
+  //Para que admita un valor null para el pais es Country, se añade !
+  pais!: Country;
+
+  bandera = '';
 
   //para poder suscribirnos a los cambios del URL inyectamos
   constructor( 
@@ -20,11 +29,17 @@ export class VerPaisComponent implements OnInit {
     this.cambiosUrl.params
       //obtenemos otro Obserbable 
       .pipe(
-        switchMap( (param) => this.paisService.obtenerPaisPorCodigo( param.id) )
+        switchMap( (params) => this.paisService.obtenerPaisPorCodigo( params.id) ),
+        //tap recibe el Obserbable y lo imprime
+        tap( console.log )
+        
       )
-      .subscribe( resp => {
-
-      })
+      .subscribe( pais => 
+        //console.log(`valor del pais recibido: ${pais[0].flag}`,pais);
+        this.pais =  (pais[0])
+        //this.bandera = this.pais.flag;
+        //console.log('Pais: ' + (Object.keys(pais[0])))
+      );
     /*
     this.cambiosUrl.params
     .subscribe( params => {
