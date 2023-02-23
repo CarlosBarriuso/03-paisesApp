@@ -6,7 +6,11 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-por-pais',
   templateUrl: './por-pais.component.html',
-  
+  styles: [`
+    li {
+      cursor: pointer;
+    }
+  `]
 })
 export class PorPaisComponent {
 
@@ -14,6 +18,8 @@ export class PorPaisComponent {
   termino: string = 'Holamundo';
   hayError: boolean = false;
   paises: Country[] = [];
+  paisesSugeridos: Country[] = [];
+  mostrarSugerencias: boolean = false;
 
   // Inyectamos el servicio para poder usar el servicio
   constructor( private paisService: PaisService) { }
@@ -39,8 +45,18 @@ export class PorPaisComponent {
 
   sugerencias($event: string) {
     this.hayError = false;
+    this.termino = $event;
+    this.mostrarSugerencias = true;
     // TODO: crear sugerencias
+    this.paisService.buscarPais( $event )
+      .subscribe( paises => this.paisesSugeridos = paises.slice(0, 3),
+      (err) => this.paisesSugeridos = [] 
+      );
     }
   
-  
+  buscarSugerido (termino: string) {
+
+    this.buscar( termino );
+    //this.mostrarSugerencias = false;
+  }
 }
