@@ -36,7 +36,7 @@ export class VerPaisComponent implements OnInit {
       )
       .subscribe( pais => 
         //console.log(`valor del pais recibido: ${pais[0].flag}`,pais);
-        this.pais =  (pais[0])
+        this.pais =  (pais)
         //this.bandera = this.pais.flag;
         //console.log('Pais: ' + (Object.keys(pais[0])))
       );
